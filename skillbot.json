@@ -1,7 +1,39 @@
 {
   "intents": [
     {
-      "intent": "Bot_Control_Standby",
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "hello there"
+        },
+        {
+          "text": "Hello There"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "What's up"
+        }
+      ]
+    },
+    {
+      "intent": "#name",
+      "examples": {
+        "text": "name"
+      }
+    },
+    {
+      "intent": "BotStandby",
       "examples": [
         {
           "text": "I will be back"
@@ -67,7 +99,7 @@
       "description": "Indicate a delay in providing input to the bot."
     },
     {
-      "intent": "Bot_Control_Approve_Response",
+      "intent": "BotApprove",
       "examples": [
         {
           "text": "That's exactly what I want"
@@ -136,7 +168,7 @@
       "description": "Acknowledge that the response satisfies a question."
     },
     {
-      "intent": "Bot_Control_Clarification",
+      "intent": "BotClarification",
       "examples": [
         {
           "text": "Come again?"
@@ -193,7 +225,7 @@
       "description": "Repeat or clarify last statement."
     },
     {
-      "intent": "Bot_Control_Reject_Response",
+      "intent": "BotRejectResponse",
       "examples": [
         {
           "text": "I don't want that"
@@ -282,7 +314,7 @@
       ]
     },
     {
-      "intent": "Bot_Control_Ignore_Undo",
+      "intent": "BotIgnoreUndo",
       "examples": [
         {
           "text": "I didn't mean to do that actually, let's go back"
@@ -393,7 +425,7 @@
       "description": "ask for event data"
     },
     {
-      "intent": "Bot_Control_Change_Subject",
+      "intent": "BotChangeSubject",
       "examples": [
         {
           "text": "Discuss something else"
@@ -435,7 +467,7 @@
       "description": "Change to a different topic."
     },
     {
-      "intent": "Bot_Control_Unsure",
+      "intent": "BotUnsure",
       "examples": [
         {
           "text": "I have no idea what you are looking for"
@@ -483,7 +515,7 @@
           "text": "Nice one"
         },
         {
-          "text": "Cheers watson"
+          "text": "Cheers larrick"
         },
         {
           "text": "Cheers"
@@ -492,18 +524,24 @@
           "text": "Thanks"
         },
         {
+          "text": "Thanks you very much"
+        },
+        {
           "text": "Ta"
+        },
+        {
+          "text": "ty"
         },
         {
           "text": "Thank you"
         },
         {
-          "text": "Thanks watson"
+          "text": "Thanks larrick"
         }
       ]
     },
     {
-      "intent": "Bot_Control_Start_Over",
+      "intent": "BotStartOver",
       "examples": [
         {
           "text": "Let's pick this up from the top again."
@@ -656,7 +694,7 @@
       "description": "show event information"
     },
     {
-      "intent": "Bot_Control_Confirm_Presence",
+      "intent": "BotConfirmPresence",
       "examples": [
         {
           "text": "Are you on?"
@@ -796,111 +834,47 @@
         }
       ],
       "fuzzy_match": true
-    },
-    {
-      "entity": "sys-date",
-      "values": []
-    },
-    {
-      "entity": "eventName",
-      "values": [
-        {
-          "type": "patterns",
-          "value": "shortname",
-          "patterns": [
-            "[\"„“][A-Za-z0-9.:| @\\']+[\"”“]"
-          ]
-        }
-      ]
-    },
-    {
-      "entity": "sys-time",
-      "values": []
-    },
-    {
-      "entity": "eventContact",
-      "values": [
-        {
-          "type": "patterns",
-          "value": "websiteURI",
-          "patterns": [
-            "(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
-          ]
-        },
-        {
-          "type": "patterns",
-          "value": "slackProvidedURI",
-          "patterns": [
-            "<[A-Za-z0-9._|:%@\\/]+>"
-          ]
-        },
-        {
-          "type": "patterns",
-          "value": "email",
-          "patterns": [
-            "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
-          ]
-        }
-      ]
-    }
-  ],
-  "metadata": {
-    "api_version": {
-      "major_version": "v2",
-      "minor_version": "2018-11-08"
-    }
-  },
-  "webhooks": [
-    {
-      "url": "https://REGION.functions.cloud.ibm.com/api/v1/web/NAMESPACE/slackdemo/dispatch.json",
-      "name": "main_webhook",
-      "headers": [
-        {
-          "name": "X-Require-Whisk-Auth",
-          "value": "YOURSECRET"
-        }
-      ]
     }
   ],
   "dialog_nodes": [
     {
-      "type": "event_handler",
+      "type": "eventhandler",
       "output": {},
-      "parent": "slot_9_1517304032949",
+      "parent": "slot",
       "context": {
         "eventContact": "@eventContact.literal"
       },
       "metadata": {},
       "conditions": "@eventContact.literal",
       "event_name": "input",
-      "dialog_node": "handler_10_1517304032949",
-      "previous_sibling": "handler_11_1517304032949"
+      "dialog_node": "handler_0",
+      "previous_sibling": "handler_1"
     },
     {
-      "type": "event_handler",
+      "type": "eventhandler",
       "output": {
         "text": "Do you have an email contact or web URI?"
       },
-      "parent": "slot_9_1517304032949",
+      "parent": "slot_9",
       "metadata": {},
       "event_name": "focus",
-      "dialog_node": "handler_11_1517304032949"
+      "dialog_node": "handler_11"
     },
     {
-      "type": "event_handler",
+      "type": "eventhandler",
       "output": {},
-      "parent": "slot_3_1517301789523",
+      "parent": "slot_3",
       "context": {
         "location": "@eventLocation"
       },
       "metadata": {},
       "conditions": "@eventLocation",
       "event_name": "input",
-      "dialog_node": "handler_4_1517301789523",
-      "previous_sibling": "handler_5_1517301789523"
+      "dialog_node": "handler_4",
+      "previous_sibling": "handler_5"
     },
     {
-      "type": "event_handler",
+      "type": "eventhandler",
       "output": {
         "text": {
           "values": [
@@ -909,29 +883,29 @@
           "selection_policy": "sequential"
         }
       },
-      "parent": "slot_3_1517301789523",
+      "parent": "slot_4",
       "metadata": {},
       "event_name": "focus",
-      "dialog_node": "handler_5_1517301789523"
+      "dialog_node": "handler_6"
     },
     {
       "type": "slot",
       "output": {},
-      "parent": "node_16_1517405116504",
+      "parent": "node_16",
       "metadata": {},
       "variable": "$queryPredicate",
-      "dialog_node": "slot_20_1517405919423",
-      "previous_sibling": "node_9_1517403528441"
+      "dialog_node": "slot_20",
+      "previous_sibling": "node_9"
     },
     {
-      "type": "event_handler",
+      "type": "eventhandler",
       "output": {},
-      "parent": "node_16_1517405116504",
+      "parent": "node_17",
       "disabled": true,
       "metadata": {},
       "event_name": "focus",
-      "dialog_node": "handler_19_1517405919417",
-      "previous_sibling": "slot_20_1517405919423"
+      "dialog_node": "handler_19",
+      "previous_sibling": "slot_21"
     },
     {
       "type": "frame",
@@ -1568,7 +1542,9 @@
     }
   },
   "learning_opt_out": false,
-  "name": "TutorialSlackbot",
+  "name": "TechBot",
+  "author": "Larrick",
+  "github": "https://github.com/larrick12",
   "language": "en",
-  "description": "A slackbot"
+  "description": "A Techbot"
 }
