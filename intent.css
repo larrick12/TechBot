@@ -63,7 +63,7 @@ b {
 /* the screen or content of the device*/
 .smartphone .chat {
 	position: absolute;
-	top: 30%;
+	top: 55%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 250px;
