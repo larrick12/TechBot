@@ -104,7 +104,7 @@ function output_message() {
 
             response = 'Can you recap that! <br> Like I said before, here are my short codes <br><br> cocde: <br> <b>0</b>: want to learn about ajax<br> <b>1</b>: want to learn about php<br> <b>2</b>: want to learn about javascript <br> <b>3</b>: want to learn about nodejs <br> <b>4</b>: Want to learn about Reactjs and Redux';
         }
-        response = `Here are some of my short cocde: <br> <b>0</b>: want to learn about ajax<br> <b>1</b>: want to learn about php<br> <b>2</b>: wnan to learn about javascript <br> <b>3</b>: want to learn about nodejs <br> <b>2</b>: Want to learn about Reactjs and Redux`;
+        response = `Here are some of my short cocde: <br> <b>0</b>: want to learn about ajax<br> <b>1</b>: want to learn about php<br> <b>2</b>: wnan to learn about javascript <br> <b>3</b>: want to learn about nodejs <br> <b>4</b>: Want to learn about Reactjs and Redux`;
     }
 
     if (response == null) {
